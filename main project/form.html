@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form | STAR SUDH BHOJNALIYA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .thank-you-message {
+            display: none;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Order Your Food</h2>
+    <form id="orderForm" onsubmit="showThankYouMessage(event)">
+        <div class="form-group">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+
+        <div class="form-group">
+            <label for="maincourse">Main Course:</label>
+            <select id="maincourse" name="maincourse" required>
+                <option value="daal-fry">DAAL FRY - Rs 60</option>
+                <option value="chana-masala">Chana masala - Rs 120</option>
+                <option value="daal-makhani">Daal makhani - Rs 120</option>
+                <option value="kadhi-pakora">Kadhi pakora - Rs 60</option>
+                <option value="mix-veg">Mix veg sabzi - Rs 140</option>
+                <option value="matar-paneer">Matar paneer - Rs 120</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="breakfast">Breakfast:</label>
+            <select id="breakfast" name="breakfast" required>
+                <option value="tea">Tea - Rs 20</option>
+                <option value="red-chili-paratha">Red chili paratha - Rs 50</option>
+                <option value="green-chili-paratha">Green chilli paratha - Rs 50</option>
+                <option value="aalu-paratha">Aalu paratha - Rs 60</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="sidedish">Side Dish:</label>
+            <select id="sidedish" name="sidedish" required>
+                <option value="boondi-raita">Boondi raita - Rs 50</option>
+                <option value="mix-raita">Mix raita - Rs 80</option>
+                <option value="kheer">Kheer - Rs 50</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="roti">Roti Quantity:</label>
+            <select id="roti" name="roti" required>
+                <option value="simple-roti">Simple Roti - Rs 6</option>
+                <option value="butter-roti">Butter Roti - Rs 8</option>
+                <option value="naan">Naan - Rs 40</option>
+            </select>
+        </div>
+
+        <button type="submit">Place Order</button>
+    </form>
+
+    <div class="thank-you-message" id="thankYouMessage">
+        <p>Thank you for ordering! We will contact you soon.</p>
+    </div>
+</div>
+
+<script>
+    function showThankYouMessage(event) {
+        event.preventDefault();  // Prevent the form from actually submitting
+        document.getElementById("orderForm").style.display = "none";  // Hide the form
+        document.getElementById("thankYouMessage").style.display = "block";  // Show the thank you message
+    }
+</script>
+
+</body>
+</html>
