@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form | STAR SUDH BHOJNALIYA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .thank-you-message {
+            display: none;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Order Your Food</h2>
+    <form id="orderForm" onsubmit="validateForm(event)">
+        <div class="form-group">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" placeholder="Enter your city" required>
+        </div>
+
+        <div class="form-group">
+            <label for="maincourse">Main Course:</label>
+            <select id="maincourse" name="maincourse" required>
+                <option value="">Add to Order</option>
+                <option value="daal-fry">DAAL FRY - Rs 60</option>
+                <option value="chana-masala">Chana masala - Rs 120</option>
+                <option value="daal-makhani">Daal makhani - Rs 120</option>
+                <option value="kadhi-pakora">Kadhi pakora - Rs 60</option>
+                <option value="mix-veg">Mix veg sabzi - Rs 140</option>
+                <option value="matar-paneer">Matar paneer - Rs 120</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="breakfast">Breakfast:</label>
+            <select id="breakfast" name="breakfast" required>
+                <option value="">Add to Order</option>
+                <option value="tea">Tea - Rs 20</option>
+                <option value="red-chili-paratha">Red chili paratha - Rs 50</option>
+                <option value="green-chili-paratha">Green chili paratha - Rs 50</option>
+                <option value="aalu-paratha">Aalu paratha - Rs 60</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="sidedish">Side Dish:</label>
+            <select id="sidedish" name="sidedish" required>
+                <option value="">Add to Order</option>
+                <option value="boondi-raita">Boondi raita - Rs 50</option>
+                <option value="mix-raita">Mix raita - Rs 80</option>
+                <option value="kheer">Kheer - Rs 50</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="roti-type">Select Roti Type:</label>
+            <select id="roti-type" name="roti-type" required>
+                <option value="">Add to Order</option>
+                <option value="simple-roti">Simple Roti - Rs 6</option>
+                <option value="butter-roti">Butter Roti - Rs 8</option>
+                <option value="naan">Naan - Rs 40</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="roti-quantity">Roti Quantity:</label>
+            <input type="number" id="roti-quantity" name="roti-quantity" placeholder="Enter quantity (0 or more)" min="0" required>
+        </div>
+
+        <button type="submit">Place Order</button>
+    </form>
+
+    <div class="thank-you-message" id="thankYouMessage">
+        <p>Thank you for ordering! We will contact you soon.</p>
+    </div>
+</div>
+
+<script>
+    function validateForm(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const phoneRegex = /^[6-9]\d{9}$/;
+        const quantity = document.getElementById("roti-quantity").value;
+        const city = document.getElementById("city").value.toLowerCase();
+
+        // Validation for name: only alphabets allowed
+        if (!/^[A-Za-z\s]+$/.test(name)) {
+            alert("Please enter a valid name with alphabets only.");
+            return;
+        }
+
+        // Validation for phone: Valid Indian number format
+        if (!phoneRegex.test(phone)) {
+            alert("Please enter a valid Indian phone number.");
+            return;
+        }
+
+        // City validation: Only Ghaziabad accepted
+        if (city !== "ghaziabad") {
+            alert("Sorry, we only accept orders from Ghaziabad.");
+            return;
+        }
+
+        // Validation for quantity: it must be 0 or more
+        if (quantity === "" || parseInt(quantity) < 0) {
+            alert("Please enter a valid roti quantity (0 or more).");
+            return;
+        }
+
+        // If all validations pass
+        document.getElementById("orderForm").style.display = "none";
+        document.getElementById("thankYouMessage").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
